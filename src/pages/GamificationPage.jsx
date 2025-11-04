@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Gamification from "../components/Gamification";
+import React, { useState } from 'react';
+import Gamification from '../components/Gamification';
 
 export default function GamificationPage() {
   const [budgetData, setBudgetData] = useState({
     mealPlan: 500,
     spending: [
-      { category: "Food", amount: 50 },
-      { category: "Books", amount: 20 },
+      { category: 'Food', amount: 50 },
+      { category: 'Books', amount: 20 },
     ],
   });
 
