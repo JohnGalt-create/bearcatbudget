@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import BudgetInput from "../components/BudgetInput";
+import React, { useState } from 'react';
+import BudgetInput from '../components/BudgetInput';
 
 export default function BudgetPage() {
   const [budgetData, setBudgetData] = useState({
