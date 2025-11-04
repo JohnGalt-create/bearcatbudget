@@ -1,25 +1,24 @@
-import React, { useState } from "react";
-import BudgetInput from "./components/BudgetInput";
-import Dashboard from "./components/Dashboard";
-import Gamification from "./components/Gamification";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import DashboardPage from "./pages/DashboardPage";
+import BudgetPage from "./pages/BudgetPage";
+import GamificationPage from "./pages/GamificationPage";
 
 function App() {
-  const [budgetData, setBudgetData] = useState({
-    mealPlan: 0,
-    spending: [],
-  });
-
-  const handleBudgetUpdate = (data) => {
-    setBudgetData(data);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Bearcat Budget</h1>
-      <BudgetInput onUpdate={handleBudgetUpdate} />
-      <Dashboard budgetData={budgetData} />
-      <Gamification budgetData={budgetData} />
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-50">
+        <div className="flex-1">
+          <Routes>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/budget" element={<BudgetPage />} />
+            <Route path="/gamification" element={<GamificationPage />} />
+          </Routes>
+        </div>
+        <Navbar />
+      </div>
+    </Router>
   );
 }
 
