@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
+
+/* Binghamton colors */
+.bg-bunyGreen { background-color: #006341; }
+.bg-bunyBlue { background-color: #0077c8; }
+.text-bunyGreen { color: #006341; }
+.text-bunyBlue { color: #0077c8; }
