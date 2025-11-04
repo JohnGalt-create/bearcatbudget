@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import DashboardPage from "./pages/DashboardPage";
-import BudgetPage from "./pages/BudgetPage";
-import GamificationPage from "./pages/GamificationPage";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import DashboardPage from './pages/DashboardPage';
+import BudgetPage from './pages/BudgetPage';
+import GamificationPage from './pages/GamificationPage';
 
 function App() {
   return (
