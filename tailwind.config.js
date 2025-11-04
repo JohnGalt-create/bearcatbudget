@@ -1,8 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  theme: {
-    extend: {},
+theme: {
+  extend: {
+    colors: {
+      bunyGreen: '#006341',
+      bunyBlue: '#0077c8',
+    },
   },
-  plugins: [],
-};
+},
