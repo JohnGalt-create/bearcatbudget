@@ -1,71 +1,69 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function BudgetInput({ onUpdate }) {
-  const [mealPlan, setMealPlan] = useState(0);
-  const [spending, setSpending] = useState([]);
-  const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState("");
+  const [mealPlan, setMealPlan] = useState(500);
+  const [spending, setSpending] = useState([{ category: '', amount: 0 }]);
 
-  const handleAddExpense = () => {
-    if (!category || !amount) return;
-    setSpending([...spending, { category, amount: Number(amount) }]);
-    setCategory("");
-    setAmount("");
+  const handleChange = (index, key, value) => {
+    const updated = [...spending];
+    updated[index][key] = key === 'amount' ? Number(value) : value;
+    setSpending(updated);
   };
 
-  const handleSubmit = () => {
+  const addRow = () => setSpending([...spending, { category: '', amount: 0 }]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onUpdate({ mealPlan, spending });
+    alert('Budget updated!');
   };
 
   return (
-    <div className="bg-white p-6 rounded shadow mb-6 max-w-md mx-auto">
-      <h2 className="text-xl font-semibold mb-4">Enter Your Budget</h2>
-
-      <input
-        type="number"
-        placeholder="Meal Plan Balance"
-        value={mealPlan}
-        onChange={(e) => setMealPlan(Number(e.target.value))}
-        className="border p-2 mb-4 w-full rounded"
-      />
-
-      <div className="flex gap-2 mb-4">
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="border p-2 rounded flex-1"
-        />
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <div>
+        <label>Meal Plan Amount: </label>
         <input
           type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="border p-2 rounded w-24"
+          value={mealPlan}
+          onChange={(e) => setMealPlan(Number(e.target.value))}
+          className="border rounded p-1"
         />
-        <button
-          onClick={handleAddExpense}
-          className="bg-blue-500 text-white px-3 rounded"
-        >
-          Add
-        </button>
       </div>
 
-      <ul className="mb-4">
-        {spending.map((s, i) => (
-          <li key={i}>
-            {s.category}: ${s.amount}
-          </li>
-        ))}
-      </ul>
+      {spending.map((s, i) => (
+        <div key={i} className="flex gap-2 items-center">
+          <input
+            type="text"
+            placeholder="Category"
+            value={s.category}
+            onChange={(e) => handleChange(i, 'category', e.target.value)}
+            className="border rounded p-1 flex-1"
+          />
+          <input
+            type="number"
+            placeholder="Amount"
+            value={s.amount}
+            onChange={(e) => handleChange(i, 'amount', e.target.value)}
+            className="border rounded p-1 w-24"
+          />
+        </div>
+      ))}
 
       <button
-        onClick={handleSubmit}
-        className="bg-green-500 text-white px-4 py-2 rounded w-full"
+        type="button"
+        onClick={addRow}
+        className="bg-bunyBlue text-white px-3 py-1 rounded"
       >
-        Save Budget
+        Add Row
       </button>
-    </div>
+
+      <button
+        type="submit"
+        className="bg-bunyGreen text-white px-4 py-2 rounded"
+      >
+        Update Budget
+      </button>
+    </form>
   );
 }
+
